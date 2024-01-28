@@ -27,10 +27,7 @@ def predict():
     B = float(request.form['B'])
     LSTAT = float(request.form['LSTAT'])
 
-    # data = pd.DataFrame([[CRIM, ZN,	INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]],
-    #                     columns=['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM',
-    #                              'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'])
-    data = pd.DataFrame([[0.06905,	0.0, 	2.18, 	0, 	0.458, 7.147, 54.2, 6.0622, 3, 222.0, 18.7, 	396.9, 5.33]],
+    data = pd.DataFrame([[CRIM, ZN,	INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]],
                         columns=['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM',
                                  'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'])
     lin_reg = joblib.load('model/random_forest.pkl')
