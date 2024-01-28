@@ -44,4 +44,4 @@ def predict():
     return render_template('index.html', result=final_output)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
