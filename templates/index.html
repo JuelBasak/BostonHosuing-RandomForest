@@ -25,6 +25,16 @@
                 <h1>Boston Housing Price Prediction</h1>
             </div>
 
+            <div class="output">
+                {% if result %}
+                {% if result > '0' %}
+                <h3>Predicted Price is {{result}} units</h3>
+                {% else %}
+                <h3> Predicted Price is Negative. Value : {{result}} units </h3>
+                {% endif %}
+                {% endif %}
+            </div>
+
             <label for="CRIM">CRIM (per capita crime rate by town)</label>
             <input class="form-control" type="number" placeholder="Eg: 0.009-88.97" id="CRIM" name="CRIM" step="0.001"
                 required>
@@ -81,15 +91,7 @@
                     data-bs-target="#exampleModal">Predict Prices</button>
             </div>
 
-            <div class="output">
-                {% if result %}
-                {% if result > '0' %}
-                <h3>Predicted Price is {{result}} units</h3>
-                {% else %}
-                <h3> Predicted Price is Negative. Value : {{result}} units </h3>
-                {% endif %}
-                {% endif %}
-            </div>
+
         </div>
     </form>
 
@@ -97,7 +99,7 @@
     <nav class="navbar fixed-bottom navbar-light bg-light">
         <a class="navbar-brand" href="https://github.com/JuelBasak/BostonHousingPrice.git" target="_blank">Made by
             Biswajit 😎. Git
-            Link-<strong>https://github.com/JuelBasak/BostonHousingPrice.git</strong></a>
+            Link-<strong>https://github.com/thecuriousjuel/BostonHousingPrice.git</strong></a>
     </nav>
 
 

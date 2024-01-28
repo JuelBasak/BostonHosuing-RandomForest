@@ -27,21 +27,20 @@ def predict():
     B = float(request.form['B'])
     LSTAT = float(request.form['LSTAT'])
 
-    data = pd.DataFrame([[CRIM, ZN,	INDUS, CHAS, NOX, RM,	AGE, DIS, RAD, TAX,	PTRATIO, B, LSTAT]],
-                        columns=['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'])
-
+    data = pd.DataFrame([[CRIM, ZN,	INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]],
+                        columns=['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM',
+                                 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'])
     lin_reg = joblib.load('model/random_forest.pkl')
     numerical_transformer = joblib.load('model/num_pipeline.pkl')
     column_transformer = joblib.load('model/full_pipeline.pkl')
-
+    data = data.astype('object')
     prepared_data = column_transformer.transform(data)
     output = lin_reg.predict(prepared_data)
-    final_output = numerical_transformer.inverse_transform(output)
-
-    final_output = '{:.2f}'.format(final_output[0])
-
+    final_output = numerical_transformer.inverse_transform([output])
+    final_output = '{:.2f}'.format(final_output[0, 0])
 
     return render_template('index.html', result=final_output)
+
 
 if __name__ == '__main__':
     app.run(debug=False)
